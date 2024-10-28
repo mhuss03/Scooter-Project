@@ -1,40 +1,25 @@
-const { describe, expect, it } = require("@jest/globals");
+const { describe, expect, it, test } = require("@jest/globals");
 const Scooter = require("../classes/Scooter.js");
 
-describe("scooter.rent(user)", () => {
-  it.skip("checks a scooter out to a user", () => {
-    // Arrange
-    // Act
-    // Assert
+describe("Scooter Class", () => {
+  beforeEach(() => {
+    Scooter.nextSerial = 1;
+  });
+  test("init", () => {
+    const scooter = new Scooter("Station A");
+
+    expect(scooter.station).toBe("Station A");
+    expect(scooter.user).toBe(null);
+    expect(scooter.serial).toBe(1);
+    expect(scooter.charge).toBe(100);
+    expect(scooter.isBroken).toBe(false);
   });
 
-  it.skip("throws an error if battery dead or scooter broken", () => {
-    // Arrange
-    // Act
-    // Assert
-  });
-});
+  test("increment", () => {
+    const scooter1 = new Scooter("Station A");
+    const scooter2 = new Scooter("Station B");
 
-describe("scooter.dock(station)", () => {
-  it.skip("returns a scooter to a station", () => {
-    // Arrange
-    // Act
-    // Assert
-  });
-});
-
-describe("scooter.charge()", () => {
-  it.skip("charges a scooter", () => {
-    // Arrange
-    // Act
-    // Assert
-  });
-});
-
-describe("scooter.repair()", () => {
-  it.skip("repairs a scooter", () => {
-    // Arrange
-    // Act
-    // Assert
+    expect(scooter1.serial).toBe(1);
+    expect(scooter2.serial).toBe(2);
   });
 });
